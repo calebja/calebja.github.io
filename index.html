@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caleb James — IT &amp; Cybersecurity Engineering Student | Portfolio</title>
+<meta name="description" content="Portfolio of Caleb James, an IT and Cybersecurity Engineering student at George Mason University. View projects, labs, certifications, and contact info.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Caleb James — IT &amp; Cybersecurity Engineering Student">
+<meta property="og:description" content="Home labs, CTF competitions, and coursework projects from a Cybersecurity Engineering student at George Mason University.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="https://example.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root {
+    --bg: #0A0E14;
+    --bg-raised: #10151E;
+    --surface: #151B26;
+    --surface-border: #232B3A;
+    --text-primary: #E9EDF3;
+    --text-secondary: #96A2B5;
+    --text-tertiary: #62708A;
+    --accent-cyan: #4FE0EF;
+    --accent-cyan-dim: #2C7A85;
+    --accent-amber: #EAAE52;
+    --accent-green: #52E0A6;
+    --focus-ring: #4FE0EF;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 4.5rem;
+    --space-7: 7rem;
+
+    --radius: 10px;
+    --radius-sm: 6px;
+    --max-width: 1140px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+
+  a { color: var(--accent-cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 var(--space-2) 0;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 700; }
+  h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+  h3 { font-size: 1.25rem; }
+  p { margin: 0 0 var(--space-2) 0; color: var(--text-secondary); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: var(--space-2);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent-cyan);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-cyan);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+  }
+  section { padding: var(--space-6) 0; }
+
+  /* ============ FOCUS / A11Y ============ */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--accent-cyan);
+    color: #05161A;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    padding: 0.75em 1.25em;
+    z-index: 1000;
+    border-radius: 0 0 8px 0;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* ============ HEADER / NAV ============ */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 20, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--surface-border);
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-2) var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .brand:hover { text-decoration: none; color: var(--accent-cyan); }
+  .brand .dot { color: var(--accent-cyan); }
+
+  nav.primary-nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+  }
+  nav.primary-nav a {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    font-weight: 500;
+    padding: 0.4em 0.1em;
+  }
+  nav.primary-nav a:hover { color: var(--text-primary); text-decoration: none; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    width: 44px; height: 44px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85em 1.5em;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-primary {
+    background: var(--accent-cyan);
+    color: #05161A;
+  }
+  .btn-primary:hover { background: #6BE7F2; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    border-color: var(--surface-border);
+    color: var(--text-primary);
+  }
+  .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-1px); }
+  .btn-group { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .hero-title .accent { color: var(--accent-cyan); }
+  .hero-lede { font-size: 1.15rem; max-width: 46ch; }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-top: var(--space-3);
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  /* Terminal signature element */
+  .terminal {
+    background: var(--bg-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.7em 1em;
+    background: var(--surface);
+    border-bottom: 1px solid var(--surface-border);
+  }
+  .terminal-titlebar span.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .dot-red { background: #E85C5C; }
+  .dot-amber { background: var(--accent-amber); }
+  .dot-green { background: var(--accent-green); }
+  .terminal-titlebar .title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-left: var(--space-1);
+  }
+  .terminal-body {
+    padding: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    min-height: 260px;
+    color: var(--text-secondary);
+  }
+  .terminal-body .prompt { color: var(--accent-green); }
+  .terminal-body .path { color: var(--accent-cyan); }
+  .terminal-body .out { color: var(--text-primary); }
+  .terminal-body .ok { color: var(--accent-green); }
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px; height: 1.1em;
+    background: var(--accent-cyan);
+    vertical-align: text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ============ SECTION HEADS ============ */
+  .section-head { max-width: 60ch; margin-bottom: var(--space-4); }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-5);
+  }
+  .stat-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .stat-list li {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2);
+  }
+  .stat-num { font-family: var(--font-mono); color: var(--accent-cyan); font-size: 1.4rem; font-weight: 600; display: block; }
+  .stat-label { font-size: 0.85rem; color: var(--text-tertiary); }
+
+  /* ============ SKILLS ============ */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+  }
+  .skill-card h3 { color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: var(--space-2); }
+  .tag-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5em; }
+  .tag-list li {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--surface-border);
+    color: var(--text-secondary);
+    padding: 0.35em 0.7em;
+    border-radius: 999px;
+  }
+
+  .certs-row {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    background: var(--bg-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    padding: 0.7em 1em;
+    font-size: 0.9rem;
+  }
+  .cert-badge .cert-icon { color: var(--accent-amber); flex-shrink: 0; }
+
+  /* ============ PROJECTS ============ */
+  .project-grid { display: grid; gap: var(--space-4); }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: var(--space-4);
+  }
+  .project-media {
+    background: var(--bg-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: var(--space-2);
+  }
+  .project-body h3 { margin-bottom: 0.3em; }
+  .project-tools { margin: var(--space-2) 0; }
+  .project-detail dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-cyan);
+    margin-top: var(--space-2);
+  }
+  .project-detail dd { margin: 0.25em 0 0 0; color: var(--text-secondary); }
+  .project-links { margin-top: var(--space-3); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* ============ EXPERIENCE TIMELINE ============ */
+  .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--surface-border); }
+  .timeline li { position: relative; padding: 0 0 var(--space-4) var(--space-4); }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -7px; top: 4px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent-cyan);
+  }
+  .timeline .role-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-tertiary); }
+  .timeline h3 { margin-bottom: 0.2em; }
+  .timeline .role-org { color: var(--accent-cyan); font-weight: 500; }
+
+  /* ============ CONTACT ============ */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+  .contact-methods { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .contact-methods a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2);
+    color: var(--text-primary);
+    min-height: 48px;
+  }
+  .contact-methods a:hover { border-color: var(--accent-cyan); text-decoration: none; }
+  .contact-methods svg { flex-shrink: 0; color: var(--accent-cyan); width: 22px; height: 22px; }
+
+  form.contact-form { display: grid; gap: var(--space-2); }
+  .form-group { display: grid; gap: 0.4em; }
+  .form-group label { font-size: 0.92rem; font-weight: 500; color: var(--text-primary); }
+  .form-group input,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    padding: 0.85em 1em;
+    min-height: 48px;
+  }
+  .form-group textarea { min-height: 130px; resize: vertical; }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent-cyan); }
+  .form-hint { font-size: 0.82rem; color: var(--text-tertiary); }
+  #form-status { font-size: 0.9rem; margin-top: var(--space-1); }
+
+  /* ============ FOOTER ============ */
+  footer.site-footer {
+    border-top: 1px solid var(--surface-border);
+    padding: var(--space-4) 0;
+    color: var(--text-tertiary);
+    font-size: 0.88rem;
+  }
+  .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); flex-wrap: wrap; }
+  .footer-links { list-style: none; display: flex; gap: var(--space-3); padding: 0; margin: 0; }
+  .a11y-statement { max-width: 60ch; margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--surface-border); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .project-card { grid-template-columns: 1fr; }
+    .hero { padding-top: var(--space-4); }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: var(--space-5) 0; }
+    nav.primary-nav {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--surface-border);
+      padding: var(--space-2) var(--space-3) var(--space-3);
+    }
+    nav.primary-nav.open { display: block; }
+    nav.primary-nav ul { flex-direction: column; gap: var(--space-2); }
+    nav.primary-nav a { display: block; padding: 0.6em 0; font-size: 1.05rem; }
+    .nav-toggle { display: flex; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .btn { width: 100%; }
+    .btn-group { flex-direction: column; }
+    .footer-grid { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="#top">caleb<span class="dot">.</span>james <span class="visually-hidden">— home</span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Open to Winter 2026 &amp; Summer 2027 internships &amp; co-ops</p>
+        <h1 class="hero-title">Caleb James<br>IT/Cybersecurity Student &amp; <span class="accent">Aspiring Security Analyst</span></h1>
+        <p class="hero-lede">Protecting what matters most. I'm an IT/Cybersecurity student at George Mason University, spending my time between coursework, home labs, and CTF competitions, learning how attackers move so I can get better at stopping them before they strike.</p>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="/assets/caleb-james-resume.pdf" download>Download résumé (PDF)</a>
+          <a class="btn btn-secondary" href="#projects">View projects</a>
+        </div>
+        <p class="hero-meta">
+          <span>Fairfax, VA — George Mason University</span>
+          <span>Open to Internships and Co-ops</span>
+        </p>
+      </div>
+
+      <div class="terminal" role="img" aria-label="Terminal window showing a simulated home lab session: nmap scan of 8 hosts, findings logged, a CTF writeup submitted.">
+        <div class="terminal-titlebar">
+          <span class="dot dot-red"></span><span class="dot dot-amber"></span><span class="dot dot-green"></span>
+          <span class="title">caleb@gmu-lab: ~/ctf</span>
+        </div>
+        <div class="terminal-body" id="terminalBody" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="container about-grid">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Security work, explained simply</h2>
+        <p>I'm an IT &amp; Cybersecurity student at George Mason University, splitting my time between cybersecurity coursework, undergraduate research, and CTF competitions on the side. I like work that delves into theory and practice; reading about an attack technique in class, then rebuilding it myself in a home lab to see exactly how it works.</p>
+        <p>As an undergraduate student pursuing cybersecurity, I have developed a strong foundation in securing IT systems through hands-on coursework, labs, and independent projects. My experience includes performing vulnerability assessments, analyzing network traffic, implementing security best practices, and strengthening system defenses against common cyber threats. I am familiar with essential technologies such as Windows and Linux administration, networking fundamentals, firewalls, access control, and security monitoring tools. Through practical experience with scripting, virtual lab environments, and security frameworks, I have built problem-solving skills and a security-first mindset. I am committed to continuously expanding my technical knowledge and applying industry best practices to protect systems, data, and organizational assets.</p>
+      </div>
+      <ul class="stat-list" aria-label="Academic highlights">
+        <li><span class="stat-num">2028</span><span class="stat-label">Expected graduation</span></li>
+        <li><span class="stat-num">8+</span><span class="stat-label">CTF challenges completed</span></li>
+        <li><span class="stat-num">3</span><span class="stat-label">Home lab environments built</span></li>
+        <li><span class="stat-num">5</span><span class="stat-label">Active certifications</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Skills</p>
+        <h2>Toolkit</h2>
+        <p>Grouped by where and how I use them.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Offensive security</h3>
+          <ul class="tag-list">
+            <li>Burp Suite</li><li>Metasploit</li><li>Nmap</li><li>Cobalt Strike</li><li>BloodHound</li><li>OWASP ZAP</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Defensive &amp; SOC</h3>
+          <ul class="tag-list">
+            <li>Splunk</li><li>CrowdStrike Falcon</li><li>Wireshark</li><li>Sigma rules</li><li>MITRE ATT&amp;CK</li><li>Elastic Stack</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Cloud &amp; infrastructure</h3>
+          <ul class="tag-list">
+            <li>AWS security</li><li>Azure AD</li><li>Terraform</li><li>Linux hardening</li><li>Python</li><li>Bash</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="certs-row" aria-label="Certifications">
+        <span class="cert-badge">AZ-900</span>
+        <span class="cert-badge">SC-900</span>
+        <span class="cert-badge">Cisco Certified Support Technician (CCST) Cybersecurity</span>
+        <span class="cert-badge">ISC2 Cybersecurity Certified</span>
+        <span class="cert-badge">Fortinet Certified Fundamentals in Cybersecurity</span>
+        <span class="cert-badge">AWS Certified Cloud Practitioner (in progress)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Projects</p>
+        <h2>Selected work</h2>
+        <p>Each write-up covers the problem, solution process, results, and what came out of it — technical depth limited for reader convenience.</p>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-media" role="img" aria-label="Screenshot of a BloodHound graph showing a mapped attack path to Domain Admin in a home lab Active Directory environment">
+            <img src="image-url-or-file-path.jpg" alt="BloodHound Attack Path Graph">
+          </div>
+          <div class="project-body">
+            <h3>Building a vulnerable Active Directory home lab</h3>
+            <p class="project-tools"><strong>Tools:</strong> VirtualBox, Windows Server 2019, Kali Linux, BloodHound, Mimikatz</p>
+            <dl class="project-detail">
+              <dt>Problem</dt>
+              <dd>The objective of this home lab was to identify and exploit common Active Directory misconfigurations, analyze attack paths using BloodHound, and observe how these weaknesses could lead to a full domain compromise.</dd>
+              <dt>Steps</dt>
+              <dd>Built a lab with a domain controller and two workstations, deliberately introduced common misconfigurations, such as a Kerberoastable service account, unconstrained delegation, and weak GPO permissions. Then, used BloodHound to map the resulting attack paths and Mimikatz to carry out a full domain compromise.</dd>
+              <dt>Result</dt>
+              <dd>Documented three separate paths to Domain Admin and wrote a home lab guide that two classmates later used to build and study their own labs.</dd>
+              <dt>What I learned</dt>
+              <dd>Reading about Kerberoasting and watching BloodHound draw the attack graph are two very different levels of understanding. Visually seeing the path was helpful.</dd>
+            </dl>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="#" aria-label="Read full write-up of the Active Directory home lab project (link placeholder)">Read full write-up</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/vulnerable-ad-homelab" aria-label="View lab build guide on GitHub (https://github.com/calebja/vulnerable-ad-homelab)">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" role="img" aria-label="Screenshot of a National Cyber League scoreboard showing category breakdown and final ranking">
+            <img src="image-url-or-file-path.jpg" alt="NCL Fall 2025 Season Individual Game Standard Bracket Placement: 1008">
+          </div>
+          <div class="project-body">
+            <h3>Placing in the National Cyber League Fall competition</h3>
+            <p class="project-tools"><strong>Tools:</strong> Burp Suite, CyberChef, Ghidra, Wireshark, Python</p>
+            <dl class="project-detail">
+              <dt>Problem</dt>
+              <dd>The objective of this competition was to strengthen practical cybersecurity skills by solving challenges in web exploitation, digital forensics, cryptography, log analysis, and network packet capture.</dd>
+              <dt>Steps</dt>
+              <dd>Competed in the National Cyber League's Fall Individual Game across categories including web exploitation, forensics, and cryptography, putting extra practice time into log analysis and packet capture challenges,  the categories I was weakest in going into the season.</dd>
+              <dt>Result</dt>
+              <dd>Finished in the top 25% nationally, with a full score in the forensics category.</dd>
+              <dt>What I learned</dt>
+              <dd>Packet capture analysis got dramatically faster once I built a personal checklist for what to check first in Wireshark instead of scrolling through the whole capture looking for anomalies.</dd>
+            </dl>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="#" aria-label="Read full write-up of the National Cyber League competition (link placeholder)">Read full write-up</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/NCL-Fall-2025" aria-label="View challenge writeups on GitHub (https://github.com/calebja/NCL-Fall-2025)">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Experience</p>
+        <h2>Experience &amp; Involvement</h2>
+      </div>
+      <ol class="timeline">
+        <li>
+          <p class="role-date">2024 — 2025</p>
+          <h3>Artificial Intelligence Undergraduate Researcher <span class="role-org">· Virginia Tech IDEEAS Labs</span></h3>
+          <p>Conducted extensive research with a team on artificial intelligence, LLM models, and nationwide policies regarding its use, culminating in an AI-powered website database of national institutional AI policy and a 150+ page research paper.</p>
+        </li>
+        </li>
+        <li>
+          <p class="role-date">2026</p>
+          <h3>SEO & Website/Marketing Optimization<span class="role-org"> · Private Author</span></h3>
+          <p>Conducted Search Engine Optimization, prevented malicious redirects and search engine blacklisting, and improved website performance and accessibility as freelance work for a private author.</p>
+        </li>
+        <li>
+          <p class="role-date">2025 - Present</p>
+          <h3>Member <span class="role-org">· Mason Competitive Cyber Club</span></h3>
+          <p>Compete in the club's CTF competitions and help lead bi-weekly CTF practice sessions for newer members, covering categories from web exploitation to network forensics.</p>
+        </li>
+        <li>
+          <p class="role-date">2025 - Present</p>
+          <h3>Member <span class="role-org">· Google Developer Group GMU</span></h3>
+          <p>Collaborate with peers to explore emerging technologies, cybersecurity trends, and software development practices through workshops, technical talks, and hands-on events. </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Let's talk</h2>
+        <p>Fastest way to reach me is email. I'm also active on LinkedIn and keep my project code on GitHub.</p>
+        <ul class="contact-methods">
+          <li>
+            <a href="mailto:cjames26@gmu.edu">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+              cjames26@gmu.edu
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/caleb-james1/" target="_blank" rel="noopener noreferrer">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg>
+              LinkedIn <span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/calebja" target="_blank" rel="noopener noreferrer">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+              GitHub <span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </li>
+          <li>
+            <a href="/assets/caleb-james-resume.pdf" download>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+              Download Résumé (PDF)
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+            <span class="form-hint" id="messageHint">Let me know what role or project you're reaching out about.</span>
+          </div>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <p>© 2026 Caleb James. Built with semantic HTML and no tracking scripts.</p>
+      <ul class="footer-links">
+        <li><a href="mailto:cjames26@gmu.edu">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/caleb-james1/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/calebja" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+    </div>
+    <p class="a11y-statement">This portfolio is designed to conform to WCAG 2.2 Level AA guidelines. If you encounter any accessibility barriers or need content in an alternative format, please contact me at <a href="mailto:cjames26@gmu.edu">cjames26@gmu.edu</a>.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  navToggle.addEventListener('click', () => {
+    const isOpen = primaryNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  primaryNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      primaryNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+
+  // Terminal signature animation
+  const terminalBody = document.getElementById('terminalBody');
+  const lines = [
+    { p: 'caleb@gmu-lab', path: '~/ctf', cmd: 'nmap -sV -oA scan 10.10.10.0/24' },
+    { out: 'Scanning 8 hosts... done.' },
+    { out: 'Nmap done: 8 IP addresses (8 hosts up) scanned in 3.92s' },
+    { p: 'caleb@gmu-lab', path: '~/ctf', cmd: 'cat notes/findings.md' },
+    { out: '3 findings logged: 1 Critical (Kerberoasting), 2 Medium' },
+    { p: 'caleb@gmu-lab', path: '~/ctf', cmd: './submit_writeup.sh --event ncl-fall-2026' },
+    { ok: 'Writeup submitted: ncl-fall-2026-writeup.md' },
+  ];
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderStatic() {
+    terminalBody.innerHTML = lines.map(l => {
+      if (l.cmd) return `<div><span class="prompt">${l.p}</span>:<span class="path">${l.path}</span>$ ${l.cmd}</div>`;
+      if (l.ok) return `<div class="ok">${l.ok}</div>`;
+      return `<div class="out">${l.out}</div>`;
+    }).join('');
+  }
+
+  async function typeLine(el, text, speed) {
+    for (let i = 0; i < text.length; i++) {
+      el.textContent += text[i];
+      await new Promise(r => setTimeout(r, speed));
+    }
+  }
+
+  async function animateTerminal() {
+    for (const l of lines) {
+      const row = document.createElement('div');
+      terminalBody.appendChild(row);
+      if (l.cmd) {
+        const promptSpan = `<span class="prompt">${l.p}</span>:<span class="path">${l.path}</span>$ `;
+        row.innerHTML = promptSpan;
+        const cmdSpan = document.createElement('span');
+        row.appendChild(cmdSpan);
+        await typeLine(cmdSpan, l.cmd, 18);
+        await new Promise(r => setTimeout(r, 250));
+      } else if (l.ok) {
+        row.className = 'ok';
+        row.textContent = l.ok;
+        await new Promise(r => setTimeout(r, 300));
+      } else {
+        row.className = 'out';
+        row.textContent = l.out;
+        await new Promise(r => setTimeout(r, 300));
+      }
+    }
+    const cursor = document.createElement('span');
+    cursor.className = 'terminal-cursor';
+    terminalBody.appendChild(cursor);
+  }
+
+  if (reducedMotion) {
+    renderStatic();
+  } else {
+    animateTerminal();
+  }
+
+  // Contact form (no backend wired up — placeholder handler)
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.textContent = 'This form isn\u2019t connected to a backend yet. Please email me directly at cjames26@gmu.edu for now.';
+  });
+</script>
+
+</body>
+</html>
