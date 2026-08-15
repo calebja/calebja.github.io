@@ -873,7 +873,7 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      status.textContent = 'Thanks — your message was sent. I\u2019ll get back to you soon.';
+      status.textContent = 'Your message has been sent successfully! Please allow a few days for a response.';
       form.reset();
     } else {
       const data = await response.json().catch(() => null);
@@ -884,7 +884,7 @@ form.addEventListener('submit', async (e) => {
       }
     }
   } catch (err) {
-    status.textContent = 'There was a network problem sending your message. Please email me directly at cjames26@gmu.edu.';
+    status.textContent = 'There was a network error while sending your message. Please email me directly at cjames26@gmu.edu.';
   } finally {
     submitBtn.disabled = false;
   }
