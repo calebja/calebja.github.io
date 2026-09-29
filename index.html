@@ -607,7 +607,7 @@
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
+  <!-- ============ NEW PROJECTS ============ -->
   <section id="projects">
     <div class="container">
       <div class="section-head">
@@ -686,6 +686,54 @@
             <div class="project-links">
               <a class="btn btn-secondary" href="https://github.com/calebja/Rep-Right" aria-label="View on GitHub (https://github.com/calebja/Rep-Right)">View on GitHub</a>
               <a class="btn btn-secondary" href="https://calebja.github.io/Rep-Right-Site/" aria-label="Web App (https://calebja.github.io/Rep-Right-Site/)">Web App</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" role="img" aria-label="Screenshot of the MITRE ATT&CK Chain Simulator showing a six-stage attack chain and a detected/undetected results table">
+            <img src="assets/MITRE_Simulator_Screenshot.png" alt="MITRE ATT&CK Chain Simulator attack chain and results table (placeholder)">
+          </div>
+          <div class="project-body">
+            <h3>MITRE ATT&amp;CK Chain Simulator: a browser-based cyber range</h3>
+            <p class="project-tools"><strong>Tools:</strong> JavaScript, HTML, CSS, MITRE ATT&amp;CK Framework</p>
+            <dl class="project-detail">
+              <dt>Problem</dt>
+              <dd>I wanted a safe way to show how layered security controls change whether an attack chain gets caught, without touching a real network, host, or account.</dd>
+              <dt>Steps</dt>
+              <dd>Built a self-contained web app with three scenarios (phishing-led compromise, ransomware staging, insider misuse), each mapped to MITRE ATT&amp;CK tactics and technique IDs. Users toggle simulated controls such as email gateway, EDR, MFA, SIEM correlation, firewall/IDS, and DLP, then run a six-stage kill chain that is scored by a per-stage detection-probability model.</dd>
+              <dt>Result</dt>
+              <dd>Delivered a single-file, no-dependency simulator with a live sensor log and a per-tactic detected/undetected results table, and it can be hosted directly on GitHub Pages.</dd>
+              <dt>What I learned</dt>
+              <dd>Mapping each stage to ATT&amp;CK tactics made defense-in-depth concrete: no single control catches everything, and the gaps show up in the stages between them.</dd>
+            </dl>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="assets/MITRE_Simulator_Writeup.pdf" target="_blank" rel="noopener noreferrer" aria-label="Read Full Write-Up (PDF)">Read Full Write-Up</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/MITRE_ATT-CK_Simulator" aria-label="View on GitHub (https://github.com/calebja/MITRE_ATT-CK_Simulator)">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media" role="img" aria-label="Screenshot of the Signal Deck analyst dashboard showing alerts and detection scorecard">
+            <img src="assets/SOC_Lab_Dashboard.png" alt="Signal Deck Mini SIEM dashboard with alerts and scorecard (placeholder)">
+          </div>
+          <div class="project-body">
+            <h3>Signal Deck: building a mini SIEM and SOC detection pipeline</h3>
+            <p class="project-tools"><strong>Tools:</strong> Python, SQLite, Regex, MITRE ATT&amp;CK Framework, HTML dashboard</p>
+            <dl class="project-detail">
+              <dt>Problem</dt>
+              <dd>The objective of this lab was to build a complete detection pipeline from raw logs to analyst dashboard, and to measure honestly how well the detection rules performed against known attacks.</dd>
+              <dt>Steps</dt>
+              <dd>Generated three days of synthetic Windows, Linux, and firewall logs with 16 labeled attack campaigns hidden in benign traffic. Wrote a collector that normalizes three raw log formats into SQLite, then built eight rule-based detectors (brute force, suspicious PowerShell, port scans, impossible login, privilege escalation, new admin accounts, persistence, large outbound transfers) mapped to MITRE ATT&amp;CK. Scored the alerts against a hidden answer key and rendered the results in a dashboard.</dd>
+              <dt>Result</dt>
+              <dd>Detected all 16 campaigns (100% recall) with 0.97 alert precision and a 0.98 F1 score. The one false positive came from two detectors firing on the same event.</dd>
+              <dt>What I learned</dt>
+              <dd>Evaluation code needs as much scrutiny as detection code. A naive matching rule misattributed an alert and created a false negative until I switched to nearest-in-time matching, and the duplicate-alert case showed why real SIEMs correlate alerts into incidents.</dd>
+            </dl>
+            <div class="project-links">
+              <a class="btn btn-secondary" href="assets/SOC_Lab_Writeup.pdf" target="_blank" rel="noopener noreferrer" aria-label="Read Full Write-Up (PDF)">Read Full Write-Up</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/Mini_SIEM_SOC" aria-label="View on GitHub (https://github.com/calebja/Mini_SIEM_SOC)">View on GitHub</a>
             </div>
           </div>
         </article>
