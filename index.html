@@ -365,15 +365,16 @@
   .cert-badge .cert-icon { color: var(--accent-amber); flex-shrink: 0; }
 
   /* ============ PROJECTS ============ */
-  .project-grid { display: grid; gap: var(--space-4); }
+  .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); align-items: stretch; }
   .project-card {
     background: var(--surface);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius);
     padding: var(--space-4);
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: var(--space-3);
   }
   .project-media {
     background: var(--bg-raised);
@@ -389,6 +390,7 @@
     text-align: center;
     padding: var(--space-2);
   }
+  .project-media img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
   .project-body h3 { margin-bottom: 0.3em; }
   .project-tools { margin: var(--space-2) 0; }
   .project-detail dt {
@@ -401,6 +403,15 @@
   }
   .project-detail dd { margin: 0.25em 0 0 0; color: var(--text-secondary); }
   .project-links { margin-top: var(--space-3); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  @media (max-width: 900px) {
+    .project-grid { gap: var(--space-2); }
+    .project-card { padding: var(--space-2); }
+    .project-detail dd, .project-tools { font-size: 0.9rem; }
+  }
+  /* Only stack to one column on small phones, where two columns would be unreadably narrow */
+  @media (max-width: 560px) {
+    .project-grid { grid-template-columns: 1fr; }
+  }
 
   /* ============ EXPERIENCE TIMELINE ============ */
   .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--surface-border); }
@@ -474,7 +485,6 @@
   @media (max-width: 900px) {
     .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
-    .project-card { grid-template-columns: 1fr; }
     .hero { padding-top: var(--space-4); }
   }
 
@@ -607,7 +617,7 @@
     </div>
   </section>
 
-  <!-- ============ NEW PROJECTS ============ -->
+  <!-- ============ PROJECTS ============ -->
   <section id="projects">
     <div class="container">
       <div class="section-head">
