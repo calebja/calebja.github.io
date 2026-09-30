@@ -677,25 +677,25 @@
         </article>
 
         <article class="project-card">
-          <div class="project-media" role="img" aria-label="Image of Rep-Right web application in use">
-            <img src="assets/CleanRep.png" alt="Image of Rep-Right web application in use">
+          <div class="project-media" role="img" aria-label="Screenshot of the Signal Deck analyst dashboard showing alerts and detection scorecard">
+            <img src="assets/SOC_Lab_Dashboard.png" alt="Signal Deck Mini SIEM dashboard with alerts and scorecard (placeholder)">
           </div>
           <div class="project-body">
-            <h3>Rep-Right: Real-Time Exercise Form Feedback in the Browser</h3>
-            <p class="project-tools"><strong>Tools:</strong> JavaScript, TensorFlow.js, MoveNet, HTML5 Canvas, WebRTC</p>
+            <h3>Signal Deck: building a mini SIEM and SOC detection pipeline</h3>
+            <p class="project-tools"><strong>Tools:</strong> Python, SQLite, Regex, MITRE ATT&amp;CK Framework, HTML dashboard</p>
             <dl class="project-detail">
               <dt>Problem</dt>
-              <dd>This project was originally made for the VTHacks 12 Virginia Tech Hackathon. I co-developed this tool with a couple of other student developers. We wanted to see if a browser alone, without any backend, account, or uploaded footage, could watch someone through their webcam and tell them in real time whether their lifting/exercise form was correct.</dd>
+              <dd>The objective of this lab was to build a complete detection pipeline from raw logs to analyst dashboard, and to measure honestly how well the detection rules performed against known attacks.</dd>
               <dt>Steps</dt>
-              <dd>Built the app around TensorFlow.js's MoveNet model to pull 2D body keypoints from the live webcam feed at roughly 30fps, then wrote the geometry layer including functions to compute joint angles and torso lean from vertical  using vector dot products. Wrote a separate analyzer per exercise (squat, push-up, lunge, plank) that picks the more visible side of the body, checks for that exercise's specific faults (knee valgus, hip sag or pike, excessive torso lean, knee traveling past the toes). For rep-based exercises, built a small phase state machine (up/down) with hysteresis thresholds so a rep only counts once the joint angle crosses back through a "top" threshold, and flagged reps as "clean" or logged their specific issue.</dd>
+              <dd>Generated three days of synthetic Windows, Linux, and firewall logs with 16 labeled attack campaigns hidden in benign traffic. Wrote a collector that normalizes three raw log formats into SQLite, then built eight rule-based detectors (brute force, suspicious PowerShell, port scans, impossible login, privilege escalation, new admin accounts, persistence, large outbound transfers) mapped to MITRE ATT&amp;CK. Scored the alerts against a hidden answer key and rendered the results in a dashboard.</dd>
               <dt>Result</dt>
-              <dd>Won the Peraton sponsor’s “Best Implementation of Generative AI” award.</dd>
+              <dd>Detected all 16 campaigns (100% recall) with 0.97 alert precision and a 0.98 F1 score. The one false positive came from two detectors firing on the same event.</dd>
               <dt>What I learned</dt>
-              <dd>Turning noisy per-frame angle data into a stable rep counter was difficult, but adding an EMA filter helped remove a lot of the noise. I learned that for any live sensor-driven state machine, the signal-processing step matters as much as the domain logic sitting on top of it.</dd>
+              <dd>Evaluation code needs as much scrutiny as detection code. A naive matching rule misattributed an alert and created a false negative until I switched to nearest-in-time matching, and the duplicate-alert case showed why real SIEMs correlate alerts into incidents.</dd>
             </dl>
             <div class="project-links">
-              <a class="btn btn-secondary" href="https://github.com/calebja/Rep-Right" aria-label="View on GitHub (https://github.com/calebja/Rep-Right)">View on GitHub</a>
-              <a class="btn btn-secondary" href="https://calebja.github.io/Rep-Right-Site/" aria-label="Web App (https://calebja.github.io/Rep-Right-Site/)">Web App</a>
+              <a class="btn btn-secondary" href="assets/SOC_Lab_Writeup.pdf" target="_blank" rel="noopener noreferrer" aria-label="Read Full Write-Up (PDF)">Read Full Write-Up</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/Mini_SIEM_SOC" aria-label="View on GitHub (https://github.com/calebja/Mini_SIEM_SOC)">View on GitHub</a>
             </div>
           </div>
         </article>
@@ -724,30 +724,30 @@
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-media" role="img" aria-label="Screenshot of the Signal Deck analyst dashboard showing alerts and detection scorecard">
-            <img src="assets/SOC_Lab_Dashboard.png" alt="Signal Deck Mini SIEM dashboard with alerts and scorecard (placeholder)">
+          <article class="project-card">
+          <div class="project-media" role="img" aria-label="Image of Rep-Right web application in use">
+            <img src="assets/CleanRep.png" alt="Image of Rep-Right web application in use">
           </div>
           <div class="project-body">
-            <h3>Signal Deck: building a mini SIEM and SOC detection pipeline</h3>
-            <p class="project-tools"><strong>Tools:</strong> Python, SQLite, Regex, MITRE ATT&amp;CK Framework, HTML dashboard</p>
+            <h3>Rep-Right: Real-Time Exercise Form Feedback in the Browser</h3>
+            <p class="project-tools"><strong>Tools:</strong> JavaScript, TensorFlow.js, MoveNet, HTML5 Canvas, WebRTC</p>
             <dl class="project-detail">
               <dt>Problem</dt>
-              <dd>The objective of this lab was to build a complete detection pipeline from raw logs to analyst dashboard, and to measure honestly how well the detection rules performed against known attacks.</dd>
+              <dd>This project was originally made for the VTHacks 12 Virginia Tech Hackathon. I co-developed this tool with a couple of other student developers. We wanted to see if a browser alone, without any backend, account, or uploaded footage, could watch someone through their webcam and tell them in real time whether their lifting/exercise form was correct.</dd>
               <dt>Steps</dt>
-              <dd>Generated three days of synthetic Windows, Linux, and firewall logs with 16 labeled attack campaigns hidden in benign traffic. Wrote a collector that normalizes three raw log formats into SQLite, then built eight rule-based detectors (brute force, suspicious PowerShell, port scans, impossible login, privilege escalation, new admin accounts, persistence, large outbound transfers) mapped to MITRE ATT&amp;CK. Scored the alerts against a hidden answer key and rendered the results in a dashboard.</dd>
+              <dd>Built the app around TensorFlow.js's MoveNet model to pull 2D body keypoints from the live webcam feed at roughly 30fps, then wrote the geometry layer including functions to compute joint angles and torso lean from vertical  using vector dot products. Wrote a separate analyzer per exercise (squat, push-up, lunge, plank) that picks the more visible side of the body, checks for that exercise's specific faults (knee valgus, hip sag or pike, excessive torso lean, knee traveling past the toes). For rep-based exercises, built a small phase state machine (up/down) with hysteresis thresholds so a rep only counts once the joint angle crosses back through a "top" threshold, and flagged reps as "clean" or logged their specific issue.</dd>
               <dt>Result</dt>
-              <dd>Detected all 16 campaigns (100% recall) with 0.97 alert precision and a 0.98 F1 score. The one false positive came from two detectors firing on the same event.</dd>
+              <dd>Won the Peraton sponsor’s “Best Implementation of Generative AI” award.</dd>
               <dt>What I learned</dt>
-              <dd>Evaluation code needs as much scrutiny as detection code. A naive matching rule misattributed an alert and created a false negative until I switched to nearest-in-time matching, and the duplicate-alert case showed why real SIEMs correlate alerts into incidents.</dd>
+              <dd>Turning noisy per-frame angle data into a stable rep counter was difficult, but adding an EMA filter helped remove a lot of the noise. I learned that for any live sensor-driven state machine, the signal-processing step matters as much as the domain logic sitting on top of it.</dd>
             </dl>
             <div class="project-links">
-              <a class="btn btn-secondary" href="assets/SOC_Lab_Writeup.pdf" target="_blank" rel="noopener noreferrer" aria-label="Read Full Write-Up (PDF)">Read Full Write-Up</a>
-              <a class="btn btn-secondary" href="https://github.com/calebja/Mini_SIEM_SOC" aria-label="View on GitHub (https://github.com/calebja/Mini_SIEM_SOC)">View on GitHub</a>
+              <a class="btn btn-secondary" href="https://github.com/calebja/Rep-Right" aria-label="View on GitHub (https://github.com/calebja/Rep-Right)">View on GitHub</a>
+              <a class="btn btn-secondary" href="https://calebja.github.io/Rep-Right-Site/" aria-label="Web App (https://calebja.github.io/Rep-Right-Site/)">Web App</a>
             </div>
           </div>
         </article>
-
+        
       </div>
     </div>
   </section>
